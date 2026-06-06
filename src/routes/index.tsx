@@ -1,29 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ViceCityGame } from "@/components/ViceCityGame";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Gampola Vice Drive — Neon Driving Game" },
+      {
+        name: "description",
+        content:
+          "Cruise the real streets of Gampola, Sri Lanka in a neon Vice City-style top-down driving game. Find Ambuluwawa Tower.",
+      },
+      { property: "og:title", content: "Gampola Vice Drive" },
+      {
+        property: "og:description",
+        content: "A neon, retro-80s top-down driving game set in Gampola, Sri Lanka.",
+      },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <ViceCityGame />;
 }
