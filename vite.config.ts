@@ -12,4 +12,14 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Vercel Build Output API — Vercel picks up .vercel/output automatically.
+    // serverDir must be named __server to match the hardcoded route in config.json.
+    preset: "vercel",
+    output: {
+      dir: ".vercel/output",
+      serverDir: ".vercel/output/functions/__server",
+      publicDir: ".vercel/output/static",
+    },
+  },
 });

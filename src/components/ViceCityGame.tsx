@@ -1,5 +1,8 @@
-import { useState, useCallback, useRef, useEffect } from "react";
-import { CityScene } from "./scene/CityScene";
+import { useState, useCallback, useRef, useEffect, lazy, Suspense } from "react";
+// Lazy import keeps Three.js out of the SSR server bundle entirely
+const CityScene = lazy(() =>
+  import("./scene/CityScene").then((m) => ({ default: m.CityScene }))
+);
 import { GtaHud } from "./GtaHud";
 import { useGtaData, CLASS_STATS } from "@/lib/useGtaData";
 import type { GtaVehicle } from "@/lib/useGtaData";
@@ -264,12 +267,14 @@ export function ViceCityGame() {
   // ── Game ──
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", background: "#0d0520" }}>
-      <CityScene
-        onCarUpdate={handleCarUpdate}
-        carColor={selected?.color ?? "#1a5fff"}
-        speedMult={selected?.speedMult ?? 1}
-        accelMult={selected?.accelMult ?? 1}
-      />
+      <Suspense fallback={null}>
+        <CityScene
+          onCarUpdate={handleCarUpdate}
+          carColor={selected?.color ?? "#1a5fff"}
+          speedMult={selected?.speedMult ?? 1}
+          accelMult={selected?.accelMult ?? 1}
+        />
+      </Suspense>
       <GtaHud
         car={carState}
         vehicleName={selected?.vehicle.DisplayName ?? "Unknown"}
