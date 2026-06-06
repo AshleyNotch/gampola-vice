@@ -5,7 +5,8 @@ const TRACKING_ID = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_
 
 declare global {
   interface Window {
-    google?: typeof google;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    google?: any;
     __vcInitMap?: () => void;
   }
 }
